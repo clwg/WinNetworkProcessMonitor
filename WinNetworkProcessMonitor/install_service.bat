@@ -23,8 +23,8 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 
 SET currentdir=%cd%
-SET path=%currentdir%\WinNetworkProcessMonitor.exe
-echo installing to %path%
+SET binpath=%currentdir%\WinNetworkProcessMonitor.exe
+ECHO installing to %binpath%
 
-C:\windows\system32\sc.exe create "NetworkProcessMonitor" binpath="%path%" start=auto
+C:\windows\system32\sc.exe create "NetworkProcessMonitor" binpath="%binpath%" start=auto
 C:\windows\system32\sc.exe start "NetworkProcessMonitor"
