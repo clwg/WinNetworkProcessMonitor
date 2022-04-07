@@ -9,13 +9,7 @@
 
 
 ## Quickstart
-```
-@echo OFF
-SET currentdir=%cd%
-SET path=%currentdir%\WinNetworkProcessMonitor.exe
-echo installing to %path%
-C:\windows\system32\sc.exe create "NetworkProcessMonitor" binpath="%path%" start=auto
-```
+The included batch file can 
 
 sc.exe stop "NetworkProcessMonitor" 
 sc.exe delete "NetworkProcessMonitor" 
