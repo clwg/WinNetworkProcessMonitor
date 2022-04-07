@@ -29,7 +29,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: WinNetworkProcessMonitor
-        path: |
-          /home/runner/work/WinNetworkProcessMonitor/WinNetworkProcessMonitor/WinNetworkProcessMonitor/bin/Debug/net6.0/win-x64/publish/WinNetworkProcessMonitor.exe
-          /home/runner/work/WinNetworkProcessMonitor/WinNetworkProcessMonitor/WinNetworkProcessMonitor/bin/Debug/net6.0/win-x64/iprules.txt
-          /home/runner/work/WinNetworkProcessMonitor/WinNetworkProcessMonitor/WinNetworkProcessMonitor/bin/Debug/net6.0/win-x64/install_service.bat
+        path: /home/runner/work/WinNetworkProcessMonitor/WinNetworkProcessMonitor/WinNetworkProcessMonitor/bin/Debug/net6.0/win-x64/publish/
