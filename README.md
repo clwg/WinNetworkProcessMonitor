@@ -43,7 +43,7 @@ dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesFor
 
 ## Gotchas
 
-The application as is meant to monitor endpoint systems.  Monitoring server systems that provide UDP services, such as DNS servers will result in a extreme amount of event log entries.
+The application is meant to monitor endpoint systems.  Monitoring server systems that provide UDP services, such as DNS servers will result in a extreme amount of event log entries.
 UDP record caching code can be customized to deal with these scenarios.
 
 ## Internals
@@ -52,7 +52,6 @@ The application creates a keyword filtered trace sessions on the kernel and the 
 
 Speed and performance have been valued over fidelity.  The application makes no attempt to maintain a accurate audit trail of all network and process activity.  
 Process and UDP tracing implment caching to minimize data collection,
-
 
 
 ## Analysis Considerations
