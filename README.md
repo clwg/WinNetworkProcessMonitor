@@ -1,20 +1,17 @@
 # Windows Network Process Monitor
 
-.NET 6 Event Tracing based network process monitor for Windows based systems.
+Network process monitor for Windows systems using .net 6 and event tracing.
 
-- Monitors TCP, UDP and DNS traffic on a Windows system.
+- Monitors outbound TCP, UDP and DNS traffic on a Windows system.
 - Enumerates underlying process information (file path, md5, sha1, sha256)
-- Logs results to Windows eventlog with a json payload.
-- Lightweight with internal caching mechanisms to minimize system resource utilization.
-
-Fundementally the application attempts to answer the first question when a security observation is made on the wire - primarily what caused this traffic to occur.
-
-
+- Provides alerting from ip rule sets
+- Logs results to Windows eventlog with a json eventdata payload
+- Lightweight with internal caching mechanisms to minimize system resource utilization
 
 ## Quickstart
 Extract the zip file to the directory you wish to run the service from and execute install_service.bat from a command prompt.
 
-Alternatively you can install the service normally with sc.exe
+Alternatively you can install the service normally with sc.exe and a administrative terminal
 
 ```
 C:\windows\system32\sc.exe create "NetworkProcessMonitor" binpath="C:\path\to\WinNetworkProcessMonitor.exe" start=auto
@@ -28,6 +25,16 @@ sc.exe delete "NetworkProcessMonitor"
 ```
 
 You can then delete the application folder.
+
+## Logging
+
+All logging outputs to Windows Event Log facilities so integration with secondary systems such as Elastic or Splunk should be realtively straight forward.  ![Event Viewer Output](/img/eventviewer.png)
+
+### "Alerting"
+
+Alerting is driven by the newline deliminted iprules.txt file, all network flows and dns records are then processed and if there is a match the log level of the message is increased.
+
+While you can use this to feed a ip blacklist into the system, using a DNS firewall and alerting on pre-defined rewrite locations will probably provide more utility and be easier to maintain.
 
 
 ## Building
@@ -46,14 +53,8 @@ dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesFor
 The application is meant to monitor endpoint systems.  Monitoring server systems that provide UDP services, such as DNS servers will result in a extreme amount of event log entries.
 UDP record caching code can be customized to deal with these scenarios.
 
-## "Alerting"
+Additionally the application must run with administrative privlideges - you shouldn't blindly trust this code and you should be taken in production enviornments to adequately protect the application.
 
-## Internals
-
-The application creates a keyword filtered trace sessions on the kernel and the Windows DNS client.
-
-Speed and performance have been valued over fidelity.  The application makes no attempt to maintain a accurate audit trail of all network and process activity.  
-Process and UDP tracing implment caching to minimize data collection,
 
 
 ## Analysis Considerations
@@ -63,8 +64,12 @@ When analyzing these logs it's important to remember that the majority of DNS tr
 - Most DNS records are not directly correlated to the process that initiated them.
 - Some applications that implment their own resolution will be seen communciating outbound on port 53 which is it's own signature.
 
+From a correlation or ontology perspective the data collected can be correlated to provide a represenatative view of the data.
 
 Domain Name(s) <-> IP Address(es) <-> Network Flow(s) <-> Hash <-> Filename(s)
+
+evt_to_gexf. 
+
 
 ![Gephi Output](/img/graph.png)
 
