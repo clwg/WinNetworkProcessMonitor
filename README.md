@@ -46,6 +46,8 @@ dotnet publish -r win-x64 /p:PublishSingleFile=true /p:IncludeNativeLibrariesFor
 The application is meant to monitor endpoint systems.  Monitoring server systems that provide UDP services, such as DNS servers will result in a extreme amount of event log entries.
 UDP record caching code can be customized to deal with these scenarios.
 
+## "Alerting"
+
 ## Internals
 
 The application creates a keyword filtered trace sessions on the kernel and the Windows DNS client.
@@ -58,6 +60,11 @@ Process and UDP tracing implment caching to minimize data collection,
 
 When analyzing these logs it's important to remember that the majority of DNS traffic will originate from internal Windows DNS Client stub resolver.  This has several properties that should be considered.
 
-- DNS records are not directly correlated to the process that initiated them.
-- Some applications that implment their own resolution will be seen communciating outbound on port 53
-- 
+- Most DNS records are not directly correlated to the process that initiated them.
+- Some applications that implment their own resolution will be seen communciating outbound on port 53 which is it's own signature.
+
+
+Domain Name(s) <-> IP Address(es) <-> Network Flow(s) <-> Hash <-> Filename(s)
+
+![Gephi Output](/img/graph.png)
+
