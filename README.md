@@ -9,6 +9,7 @@ Network process monitor for Windows systems using .net 6 and event tracing.
 - Lightweight with internal caching mechanisms to minimize system resource utilization
 
 ## Quickstart
+[Download the package](https://github.com/clwg/WinNetworkProcessMonitor/releases/download/0.0.1/WinNetworkProcessMonitor.zip)
 Extract the zip file to the directory you wish to run the service from and execute install_service.bat from a command prompt.
 
 Alternatively you can install the service normally with sc.exe and a administrative terminal
@@ -68,8 +69,7 @@ From a correlation or ontology perspective the data collected can be correlated 
 
 Domain Name(s) <-> IP Address(es) <-> Network Flow(s) <-> Hash <-> Filename(s)
 
-evt_to_gexf. 
-
+The script evt_to_gexf.py in the Python scripts folder processes the event log in the above manner.
 
 ![Gephi Output](/img/graph.png)
 
