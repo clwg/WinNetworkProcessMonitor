@@ -1,0 +1,4 @@
+networkx==2.6.3
+pip==20.1.1
+pywin32==303
+setuptools==47.1.0
