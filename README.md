@@ -65,7 +65,7 @@ When analyzing these logs, it's important to remember that the majority of DNS t
 
 Most DNS records are not directly correlated to the process that initiated them, but rather they are the records that were in cache when the process initiated communication.
 Some applications that implement their own resolution will be seen communicating outbound on port 53, which is its own signature.
-From a correlation or ontology perspective, the data collected can be correlated to provide a representative view of the data.
+From a correlation or ontology perspective, the data collected can be correlated to provide a representative view of the data as follows.
 
 Domain Name(s) <-> IP Address(es) <-> Network Flow(s) <-> Hash <-> Filename(s)
 
