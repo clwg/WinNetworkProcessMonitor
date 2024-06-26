@@ -63,7 +63,7 @@ Additionally, the application must run with administrative privileges - you shou
 
 When analyzing these logs, it's important to remember that the majority of DNS traffic will originate from the internal Windows DNS Client stub resolver. This has several properties that should be considered.
 
-Most DNS records are not directly correlated to the process that initiated them.
+Most DNS records are not directly correlated to the process that initiated them, but rather they are the records that were in cache when the process initiated communication.
 Some applications that implement their own resolution will be seen communicating outbound on port 53, which is its own signature.
 From a correlation or ontology perspective, the data collected can be correlated to provide a representative view of the data.
 
